@@ -4,8 +4,9 @@
 
 helpFunction()
 {
-   echo ""
-   echo "Usage: $0 -d /path/to/root/dir -s maxSize"
+   printf "\n"
+   printf "Usage: $0 -d /path/to/root/dir -s maxSize"
+   printf "\n"
    exit 1
 }
 
@@ -20,7 +21,7 @@ done
 
 if [ -z "$directory" ] || [ -z "$max" ]
 then
-   echo "Some of the parameters are empty";
+   printf "Some of the parameters are empty";
    helpFunction
 fi
 
@@ -34,11 +35,11 @@ while read dir
 		height=$(identify -format "%h" "$dir")
 		if [ \( $width -gt $max \) -o \( $height -gt $max \) ]
 			then
-				echo "BIGGER THAN EXPECTED\n$width x $height\n$dir"
+				printf "\n\nBIGGER THAN EXPECTED\nBefore: $width x $height\n$dir\n"
 				permission=$(find "$dir" -printf "%u:%g")
 				mogrify -resize 50% -quality 90 "$dir"
 				chown $permission "$dir"
-				echo $(identify -format "%w x %h" "$dir")
+				echo 'After:' $(identify -format "%w x %h" "$dir")
 		fi
 done
 
