@@ -6,4 +6,5 @@ Usage:
 ```./batch-image-resizer.sh -d /path/to/root/directory -s 1000```
 
 -d = directory
+
 -s = max size of files that will be resized
